@@ -1,0 +1,6 @@
+# DATABASE
+.redis/
+
+# FILES
+service
+.env

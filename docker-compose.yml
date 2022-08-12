@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  digital-wallet-2-redis:
+    container_name: digital-wallet-2-redis
+    image: redis
+    command: redis-server --requirepass 1234
+    hostname: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - .redis:/var/lib/postgresql/data
+
+  digital-wallet-2-collect:
+    platform: linux/amd64
+    container_name: digital-wallet-2-collect
+    build: .
+    volumes:
+      - .:/go/src/
+    ports:
+      - 8081:8082
+    depends_on:
+      - "digital-wallet-2-redis"
+    command: ./service collect
+
+  digital-wallet-2-read:
+    platform: linux/amd64
+    container_name: digital-wallet-2-read
+    build: .
+    volumes:
+      - .:/go/src/
+    ports:
+      - 8082:8082
+    depends_on:
+      - "digital-wallet-2-redis"
+    command: ./service read
