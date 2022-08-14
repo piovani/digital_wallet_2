@@ -1,7 +1,7 @@
 version: "3.9"
 
 volumes:
-    digital-wallet-2-volume-mysql:
+    database:
       external: true
 
 services:
@@ -40,12 +40,11 @@ services:
   #   command: ./service read
 
   digital-wallet-2-database:
-    platform: linux/amd64
     container_name: digital-wallet-2-database
     restart: always
     image: mysql:5.7
     volumes:
-      - .digital-wallet-2-volume-mysql:/var/lib/mysql
+      - .database:/var/lib/mysql
     ports:
       - 3306:3306
     environment:

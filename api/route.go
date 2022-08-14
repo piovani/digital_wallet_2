@@ -7,5 +7,7 @@ import (
 func (a *Api) getRoutes() {
 	a.Service.GET("/", infra.Heart)
 
-	a.Service.POST("/operations", a.OperationController.Create)
+	groupOperation := a.Service.Group("/operations")
+	groupOperation.POST("/deposit", a.OperationController.Deposit)
+	groupOperation.POST("/withdraw", a.OperationController.Withdraw)
 }
