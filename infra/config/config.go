@@ -11,6 +11,12 @@ type Config struct {
 	RedisDSN      string `envconfig:"REDIS_DNS"`
 	RedisUser     string `envconfig:"REDIS_USER"`
 	RedisPassword string `envconfig:"REDIS_PASSWORD"`
+
+	MysqlUser     string `envconfig:"MYSQL_USER"`
+	MysqlPassword string `envconfig:"MYSQL_PASSWORD"`
+	MysqlHost     string `envconfig:"MYSQL_HOST"`
+	MysqlPort     int    `envconfig:"MYSQL_PORT"`
+	MysqlDatabase string `envconfig:"MYSQL_DATABASE"`
 }
 
 var Env Config

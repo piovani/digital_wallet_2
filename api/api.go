@@ -5,23 +5,26 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/piovani/digital_wallet_2/infra/config"
+	"github.com/piovani/digital_wallet_2/infra/database"
 	"github.com/piovani/digital_wallet_2/infra/redis"
 )
 
 type Api struct {
-	Redis   *redis.Redis
-	Service *echo.Echo
+	Redis    *redis.Redis
+	Database *database.Database
+	Service  *echo.Echo
 }
 
-func NewApi(redis *redis.Redis) *Api {
+func NewApi(redis *redis.Redis, database *database.Database) *Api {
 	return &Api{
-		Redis:   redis,
-		Service: echo.New(),
+		Redis:    redis,
+		Database: database,
+		Service:  echo.New(),
 	}
 }
 
-func (a *Api) Start() {
+func (a *Api) Start() error {
 	a.GetRoutes()
 
-	a.Service.Start(fmt.Sprintf(":%d", config.Env.ApiPort))
+	return a.Service.Start(fmt.Sprintf(":%d", config.Env.ApiPort))
 }

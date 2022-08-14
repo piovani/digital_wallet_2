@@ -4,3 +4,4 @@
 # FILES
 service
 .env
+.database

@@ -7,7 +7,7 @@ services:
     command: redis-server --requirepass 1234
     hostname: redis
     ports:
-      - "6379:6379"
+      - 6379:6379
     volumes:
       - .redis:/var/lib/postgresql/data
 
@@ -34,3 +34,17 @@ services:
     depends_on:
       - "digital-wallet-2-redis"
     command: ./service read
+
+  digital-wallet-2-database:
+    # platform: linux/amd64
+    container_name: digital-wallet-2-database
+    image: mysql:5.7
+    volumes:
+      - .database:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - "MYSQL_ALLOW_EMPTY_PASSWORD=true"
+      - "MYSQL_DATABASE=database"
+      - "MYSQL_USER=user"
+      - "MYSQL_PASSWORD=secret"

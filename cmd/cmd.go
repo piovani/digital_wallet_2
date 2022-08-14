@@ -1,10 +1,12 @@
 package cmd
 
 import (
+	"database/sql"
 	"fmt"
 	"os"
 
 	"github.com/piovani/digital_wallet_2/infra/config"
+	"github.com/piovani/digital_wallet_2/infra/database/mysql"
 )
 
 func Execute() {
@@ -34,4 +36,11 @@ func CheckFatal(err error) {
 
 func InitConfig() {
 	CheckFatal(config.InitConfig())
+}
+
+func GetConnectionDB() *sql.DB {
+	db, err := mysql.GetClient()
+	CheckFatal(err)
+
+	return db
 }
