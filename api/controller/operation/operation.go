@@ -4,18 +4,26 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/piovani/digital_wallet_2/domain"
-	"github.com/piovani/digital_wallet_2/infra/database/mysql/repositories"
+	"github.com/piovani/digital_wallet_2/usecase"
 )
 
-func Create(c echo.Context) error {
-	repo := repositories.NewOperationRepository()
+type OperationController struct {
+	UsecaseDeposit *usecase.Deposit
+}
 
+func NewOperationController(d *usecase.Deposit) *OperationController {
+	return &OperationController{
+		UsecaseDeposit: d,
+	}
+}
+
+func (o *OperationController) Create(c echo.Context) error {
 	var input Input
 	c.Bind(&input)
 
-	operation := domain.NewOperation(input.UserName, "deposit", input.Value)
-	repo.Insert(*operation)
+	if err := o.UsecaseDeposit.Execute(input.UserName, input.Value); err != nil {
+		c.Error(err)
+	}
 
-	return c.JSON(http.StatusCreated, operation)
+	return c.NoContent(http.StatusCreated)
 }

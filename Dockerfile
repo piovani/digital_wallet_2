@@ -11,5 +11,3 @@ COPY . .
 RUN go mod download
 
 RUN go build -o service
-
-# CMD ["tail", "-f", "/dev/null"]
