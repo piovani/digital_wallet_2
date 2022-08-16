@@ -24,8 +24,8 @@
 - [X] Criar Wallet do usuário
 - [X] Ao depositar alterar a wallet tbm
 - [X] Ao debitar consultar a wallet se é possivel
-- [] Validação de dados -> Rota de Deposito
-- [] Validação de dados -> Rota de Saque
+- [X] Validação de dados -> Rota de Deposito
+- [X] Validação de dados -> Rota de Saque
 - [] Rota Historico
 - [] Rota Balanço - Apresentar valor em carteira, valor em moeda atual, valor em dolares e valore em euros e a somatoraria dessas duas moedas principais
 - [] Testes unitários

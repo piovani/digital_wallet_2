@@ -1,6 +1,9 @@
 package domain
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Operation struct {
 	ID        int64     `gorm:"primary_key;autoIncrement"`
@@ -12,8 +15,8 @@ type Operation struct {
 	UpdatedAt time.Time `gorm:<-:update"type:timestamp;column:updated_at"`
 }
 
-func NewOperation(name, t, coin string, value float64) *Operation {
-	return &Operation{
+func NewOperation(name, t, coin string, value float64) (*Operation, error) {
+	opt := Operation{
 		UserName:  name,
 		Type:      t,
 		Coin:      coin,
@@ -21,6 +24,12 @@ func NewOperation(name, t, coin string, value float64) *Operation {
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
+
+	if !ValidCoin(coin) {
+		return &opt, fmt.Errorf("invalid currency type")
+	}
+
+	return &opt, nil
 }
 
 type OperationRepository interface {

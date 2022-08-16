@@ -20,7 +20,10 @@ func NewDeposit(db *database.Database) *Deposit {
 }
 
 func (d *Deposit) Execute(username, coin string, value float64) error {
-	opt := domain.NewOperation(username, DEPOSIT_TYPE, coin, value)
+	opt, err := domain.NewOperation(username, DEPOSIT_TYPE, coin, value)
+	if err != nil {
+		return err
+	}
 
 	wallet, err := d.Database.WalletRepository.FindByUserName(username)
 	if err != nil {

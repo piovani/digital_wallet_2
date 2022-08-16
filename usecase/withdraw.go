@@ -33,11 +33,12 @@ func (d *Withdraw) Execute(username, coin string, value float64) error {
 
 	d.subValueInWallet(wallet, coin, value)
 
-	fmt.Println(wallet)
-
 	d.Database.WalletRepository.Save(wallet)
 
-	opt := domain.NewOperation(username, WITHDRAW_TYPE, coin, value)
+	opt, err := domain.NewOperation(username, WITHDRAW_TYPE, coin, value)
+	if err != nil {
+		return err
+	}
 
 	return d.Database.OperationRepository.Insert(opt)
 }
