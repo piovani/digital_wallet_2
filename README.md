@@ -15,13 +15,15 @@
 
 ## How Star The Project
 
+## How to Test
+
 ## Checklist TODO
 - [X] Conexao com banco de dados MySQL
 - [X] Rota de Valores de moedas atual
 - [X] Remover container de consulta de valores no redis
 - [X] Criar Wallet do usuário
 - [X] Ao depositar alterar a wallet tbm
-- [] Ao debitar consultar a wallet se é possivel
+- [X] Ao debitar consultar a wallet se é possivel
 - [] Validação de dados -> Rota de Deposito
 - [] Validação de dados -> Rota de Saque
 - [] Rota Historico

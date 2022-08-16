@@ -42,5 +42,8 @@ func (a *Api) getControllers() {
 	ctx := context.TODO()
 
 	a.CoinController = coin.NewCoinController(usecase.NewCoinPrice(ctx))
-	a.OperationController = operation.NewOperationController(usecase.NewDeposit(a.Database))
+	a.OperationController = operation.NewOperationController(
+		usecase.NewDeposit(a.Database),
+		usecase.NewWithdraw(a.Database),
+	)
 }
