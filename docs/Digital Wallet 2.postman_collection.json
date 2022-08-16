@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "4681edd8-30c9-4812-b945-9a893651dbd2",
+		"name": "Digital Wallet 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3498184"
+	},
+	"item": [
+		{
+			"name": "Infra",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}",
+							"host": [
+								"{{url_base}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Operation",
+			"item": [
+				{
+					"name": "Deposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\": \"Joao\",\n    \"coin\": \"btc\",\n    \"value\": 10.42\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/operations/deposit",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"operations",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\": \"Joao2\",\n    \"coin\": \"doge\",\n    \"value\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/operations/withdraw",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"operations",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Coin",
+			"item": [
+				{
+					"name": "Price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/coin/price",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"coin",
+								"price"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
