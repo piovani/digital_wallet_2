@@ -40,6 +40,7 @@ services:
   #   command: ./service read
 
   digital-wallet-2-database:
+    platform: linux/amd64
     container_name: digital-wallet-2-database
     restart: always
     image: mysql:5.7

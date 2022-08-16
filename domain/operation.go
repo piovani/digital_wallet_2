@@ -3,12 +3,13 @@ package domain
 import "time"
 
 type Operation struct {
-	ID        int64     `json:"id"`
-	UserName  string    `json:"user_name"`
-	Type      string    `json:"type"`
-	Value     float64   `json:"value"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	ID        int64
+	UserName  string
+	Type      string
+	Coin      string
+	Value     float64
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 func NewOperation(name, t string, value float64) *Operation {
@@ -19,4 +20,8 @@ func NewOperation(name, t string, value float64) *Operation {
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
+}
+
+type OperationRepository interface {
+	Insert(opt *Operation) error
 }
