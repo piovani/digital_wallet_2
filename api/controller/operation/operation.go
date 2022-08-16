@@ -21,7 +21,7 @@ func (o *OperationController) Deposit(c echo.Context) error {
 	var input Input
 	c.Bind(&input)
 
-	if err := o.UsecaseDeposit.Execute(input.UserName, input.Value); err != nil {
+	if err := o.UsecaseDeposit.Execute(input.UserName, input.Coin, input.Value); err != nil {
 		c.Error(err)
 	}
 
@@ -32,7 +32,7 @@ func (o *OperationController) Withdraw(c echo.Context) error {
 	var input Input
 	c.Bind(&input)
 
-	if err := o.UsecaseDeposit.Execute(input.UserName, input.Value); err != nil {
+	if err := o.UsecaseDeposit.Execute(input.UserName, input.Coin, input.Value); err != nil {
 		c.Error(err)
 	}
 

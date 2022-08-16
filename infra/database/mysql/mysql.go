@@ -1,15 +1,16 @@
 package mysql
 
 import (
-	"database/sql"
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/piovani/digital_wallet_2/infra/config"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-func GetClient() (*sql.DB, error) {
-	url := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s",
+func GetClient() (*gorm.DB, error) {
+	url := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		config.Env.MysqlUser,
 		config.Env.MysqlPassword,
 		config.Env.MysqlHost,
@@ -17,12 +18,8 @@ func GetClient() (*sql.DB, error) {
 		config.Env.MysqlDatabase,
 	)
 
-	db, err := sql.Open("mysql", url)
+	db, err := gorm.Open(mysql.Open(url), &gorm.Config{})
 	if err != nil {
-		return db, err
-	}
-
-	if err = db.Ping(); err != nil {
 		return db, err
 	}
 

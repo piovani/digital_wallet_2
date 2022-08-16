@@ -19,8 +19,8 @@ func NewWithdraw(db *database.Database) *Withdraw {
 	}
 }
 
-func (d *Withdraw) Execute(username string, value float64) error {
-	opt := domain.NewOperation(username, WITHDRAW_TYPE, value)
+func (d *Withdraw) Execute(username, coin string, value float64) error {
+	opt := domain.NewOperation(username, WITHDRAW_TYPE, coin, value)
 
 	return d.Database.OperationRepository.Insert(opt)
 }

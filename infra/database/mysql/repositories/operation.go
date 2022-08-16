@@ -1,10 +1,10 @@
 package repositories
 
 import (
-	"database/sql"
 	"fmt"
 
 	"github.com/piovani/digital_wallet_2/domain"
+	"gorm.io/gorm"
 )
 
 const (
@@ -13,34 +13,22 @@ const (
 )
 
 type OperationRepository struct {
-	DB *sql.DB
+	DB *gorm.DB
 }
 
-func NewOperationRepository(db *sql.DB) *OperationRepository {
+func NewOperationRepository(db *gorm.DB) *OperationRepository {
 	return &OperationRepository{
 		DB: db,
 	}
 }
 
 func (o OperationRepository) Insert(opt *domain.Operation) error {
-	statement, err := o.DB.Prepare(fmt.Sprintf("INSERT INTO operations (%s) VALUE (%s)", FIELDS, AUX))
-	if err != nil {
-		return err
-	}
-	defer statement.Close()
-
-	r, err := statement.Exec(opt.UserName, opt.Type, opt.Value, opt.CreatedAt, opt.UpdatedAt)
-	if err != nil {
-		fmt.Println(err)
-		return err
+	tx := o.DB.Create(opt)
+	if tx.Error != nil {
+		return tx.Error
 	}
 
-	id, err := r.LastInsertId()
-	if err != nil {
-		return err
-	}
-
-	opt.ID = id
+	fmt.Println(tx)
 
 	return nil
 }

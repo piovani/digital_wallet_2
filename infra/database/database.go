@@ -1,19 +1,18 @@
 package database
 
 import (
-	"database/sql"
-
 	"github.com/piovani/digital_wallet_2/domain"
 	"github.com/piovani/digital_wallet_2/infra/database/mysql/repositories"
+	"gorm.io/gorm"
 )
 
 type Database struct {
-	Connection *sql.DB
+	Connection *gorm.DB
 
 	OperationRepository domain.OperationRepository
 }
 
-func NewDatabase(db *sql.DB) *Database {
+func NewDatabase(db *gorm.DB) *Database {
 	database := &Database{
 		Connection: db,
 	}

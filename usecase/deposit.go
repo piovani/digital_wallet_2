@@ -19,8 +19,8 @@ func NewDeposit(db *database.Database) *Deposit {
 	}
 }
 
-func (d *Deposit) Execute(username string, value float64) error {
-	opt := domain.NewOperation(username, DEPOSIT_TYPE, value)
+func (d *Deposit) Execute(username, coin string, value float64) error {
+	opt := domain.NewOperation(username, DEPOSIT_TYPE, coin, value)
 
 	return d.Database.OperationRepository.Insert(opt)
 }

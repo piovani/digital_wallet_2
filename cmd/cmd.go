@@ -1,12 +1,12 @@
 package cmd
 
 import (
-	"database/sql"
 	"fmt"
 	"os"
 
 	"github.com/piovani/digital_wallet_2/infra/config"
 	"github.com/piovani/digital_wallet_2/infra/database/mysql"
+	"gorm.io/gorm"
 )
 
 func Execute() {
@@ -23,6 +23,8 @@ func Execute() {
 		collect()
 	case "read":
 		read()
+	case "migrate":
+		migrate()
 	default:
 		fmt.Println("NENHUM COMANDO")
 	}
@@ -38,7 +40,7 @@ func InitConfig() {
 	CheckFatal(config.InitConfig())
 }
 
-func GetConnectionDB() *sql.DB {
+func GetConnectionDB() *gorm.DB {
 	db, err := mysql.GetClient()
 	CheckFatal(err)
 
