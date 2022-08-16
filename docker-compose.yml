@@ -5,6 +5,21 @@ volumes:
       external: true
 
 services:
+  digital-wallet-2-database:
+    platform: linux/amd64
+    container_name: digital-wallet-2-database
+    restart: always
+    image: mysql:5.7
+    volumes:
+      - .database:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - "MYSQL_DATABASE=database"
+      - "MYSQL_USER=user"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ALLOW_EMPTY_PASSWORD=true"
+
   # digital-wallet-2-redis:
   #   container_name: digital-wallet-2-redis
   #   image: redis
@@ -22,7 +37,7 @@ services:
   #   volumes:
   #     - .:/go/src/
   #   ports:
-  #     - 8081:8082
+  #     - 8081:8080
   #   depends_on:
   #     - "digital-wallet-2-redis"
   #   command: ./service collect
@@ -34,22 +49,9 @@ services:
   #   volumes:
   #     - .:/go/src/
   #   ports:
-  #     - 8082:8082
+  #     - 8082:8080
   #   depends_on:
   #     - "digital-wallet-2-redis"
   #   command: ./service read
 
-  digital-wallet-2-database:
-    platform: linux/amd64
-    container_name: digital-wallet-2-database
-    restart: always
-    image: mysql:5.7
-    volumes:
-      - .database:/var/lib/mysql
-    ports:
-      - 3306:3306
-    environment:
-      - "MYSQL_DATABASE=database"
-      - "MYSQL_USER=user"
-      - "MYSQL_PASSWORD=secret"
-      - "MYSQL_ALLOW_EMPTY_PASSWORD=true"
+

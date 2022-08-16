@@ -20,6 +20,7 @@ func NewWithdraw(db *database.Database) *Withdraw {
 }
 
 func (d *Withdraw) Execute(username, coin string, value float64) error {
+	// NECESSARIO VALIDAR VALOR NA WALLET
 	opt := domain.NewOperation(username, WITHDRAW_TYPE, coin, value)
 
 	return d.Database.OperationRepository.Insert(opt)
