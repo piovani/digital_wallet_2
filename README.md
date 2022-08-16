@@ -11,8 +11,8 @@
 
 ## Checklist TODO
 - [X] Conexao com banco de dados MySQL
-- [] Rota de Valores de moedas atual
-- [] Remover container de consulta de valores no redis
+- [X] Rota de Valores de moedas atual
+- [X] Remover container de consulta de valores no redis
 - [] Criar Wallet do usuário
 - [] Ao depositar alterar a wallet tbm
 - [] Ao debitar consultar a wallet se é possivel

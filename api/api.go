@@ -1,9 +1,11 @@
 package api
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/labstack/echo/v4"
+	"github.com/piovani/digital_wallet_2/api/controller/coin"
 	"github.com/piovani/digital_wallet_2/api/controller/operation"
 	"github.com/piovani/digital_wallet_2/infra/config"
 	"github.com/piovani/digital_wallet_2/infra/database"
@@ -16,10 +18,8 @@ type Api struct {
 	Database *database.Database
 	Service  *echo.Echo
 
-	// Usecases
-	Deposit *usecase.Deposit
-
 	// Controllers
+	CoinController      *coin.CoinController
 	OperationController *operation.OperationController
 }
 
@@ -39,5 +39,8 @@ func (a *Api) Start() error {
 }
 
 func (a *Api) getControllers() {
+	ctx := context.TODO()
+
+	a.CoinController = coin.NewCoinController(usecase.NewCoinPrice(ctx))
 	a.OperationController = operation.NewOperationController(usecase.NewDeposit(a.Database))
 }

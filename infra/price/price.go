@@ -2,7 +2,6 @@ package price
 
 import (
 	"context"
-	"fmt"
 	"strconv"
 	"time"
 
@@ -10,7 +9,7 @@ import (
 )
 
 const (
-	DURATION = time.Second * 30
+	DURATION = time.Second * 60
 
 	// BTC
 	KEY_BTC_USD = "BTC_USD"
@@ -62,7 +61,7 @@ func (p Price) Collect() {
 		go p.collectDogeUsd()
 		go p.collectDogeEur()
 
-		time.Sleep(time.Minute * 1)
+		time.Sleep(time.Second * 50)
 	}
 }
 
@@ -75,7 +74,6 @@ func (p Price) collectBtcUsd() {
 func (p Price) GetBtcUsd() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_BTC_USD)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -90,7 +88,6 @@ func (p Price) collectBtcEur() {
 func (p Price) GetBtcEur() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_BTC_EUR)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -106,7 +103,6 @@ func (p Price) collectEthUsd() {
 func (p Price) GetEthUsd() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_ETH_USD)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -121,7 +117,6 @@ func (p Price) collecEtcEur() {
 func (p Price) GetEthEur() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_ETH_EUR)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -137,7 +132,6 @@ func (p Price) collectAdaUsd() {
 func (p Price) GetAdaUsd() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_ADA_USD)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -152,7 +146,6 @@ func (p Price) collectAdaEur() {
 func (p Price) GetAdaEur() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_ADA_EUR)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -168,7 +161,6 @@ func (p Price) collectXrpUsd() {
 func (p Price) GetXrpUsd() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_XRP_USD)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -183,7 +175,6 @@ func (p Price) collectXrpEur() {
 func (p Price) GetXrpEur() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_XRP_EUR)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -199,7 +190,6 @@ func (p Price) collectDogeUsd() {
 func (p Price) GetDogeUsd() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_DOGE_USD)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -214,7 +204,6 @@ func (p Price) collectDogeEur() {
 func (p Price) GetDogeEur() float64 {
 	valueString, err := p.Redis.Get(p.Ctx, KEY_DOGE_EUR)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
@@ -225,7 +214,6 @@ func (p Price) GetDogeEur() float64 {
 func (p Price) stringToFloat(valueString string) float64 {
 	value, err := strconv.ParseFloat(valueString, 64)
 	if err != nil {
-		fmt.Println(err.Error())
 		return 1
 	}
 
