@@ -13,4 +13,6 @@ func migrate() {
 
 	err = db.AutoMigrate(domain.Operation{})
 	CheckFatal(err)
+	err = db.AutoMigrate(domain.Wallet{})
+	CheckFatal(err)
 }

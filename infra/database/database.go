@@ -9,6 +9,7 @@ import (
 type Database struct {
 	Connection *gorm.DB
 
+	WalletRepository    domain.WalletRepository
 	OperationRepository domain.OperationRepository
 }
 
@@ -24,4 +25,5 @@ func NewDatabase(db *gorm.DB) *Database {
 
 func (d *Database) getRepositores() {
 	d.OperationRepository = repositories.NewOperationRepository(d.Connection)
+	d.WalletRepository = repositories.NewWalletRepository(d.Connection)
 }

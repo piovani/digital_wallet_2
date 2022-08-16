@@ -9,12 +9,18 @@
     - <a src="https://hub.docker.com/layers/golang/library/golang/1.19-alpine3.16/images/sha256-70df3b8f9f099da7f60f0b32480015165e3d0b51bfacf9e255b59f3dd6bd2828?context=explore">Golang</a>
     - <a src="https://hub.docker.com/layers/mysql/library/mysql/5.7/images/sha256-5ecf646122c4fcbda81983c9e93e81a011b0593c9c19fbfc55b48bd1c23bc790?context=explore">Mysql</a>
 
+## Requirements
+- Docker 20.10.17 or superior
+- Docker Compose 1.29.2 or superior
+
+## How Star The Project
+
 ## Checklist TODO
 - [X] Conexao com banco de dados MySQL
 - [X] Rota de Valores de moedas atual
 - [X] Remover container de consulta de valores no redis
-- [] Criar Wallet do usuário
-- [] Ao depositar alterar a wallet tbm
+- [X] Criar Wallet do usuário
+- [X] Ao depositar alterar a wallet tbm
 - [] Ao debitar consultar a wallet se é possivel
 - [] Validação de dados -> Rota de Deposito
 - [] Validação de dados -> Rota de Saque
