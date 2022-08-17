@@ -26,8 +26,9 @@
 - [X] Ao debitar consultar a wallet se é possivel
 - [X] Validação de dados -> Rota de Deposito
 - [X] Validação de dados -> Rota de Saque
-- [] Rota Historico
+- [X] Rota Historico
 - [] Rota Balanço - Apresentar valor em carteira, valor em moeda atual, valor em dolares e valore em euros e a somatoraria dessas duas moedas principais
 - [] Testes unitários
-- [] Swagger
-- [] Base de dados com algumas informações
+- [] Swagger com as rotas mapeadas
+- [] Seed com alguns dados iniciais
+- [] Arrumar os containers para API rodar corretamente

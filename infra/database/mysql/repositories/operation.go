@@ -15,6 +15,15 @@ func NewOperationRepository(db *gorm.DB) *OperationRepository {
 	}
 }
 
+func (o OperationRepository) FindByUserName(username string) (operations []domain.Operation, error error) {
+	tx := o.DB.Where("user_name = ?", username).Find(&operations)
+	if tx.Error != nil {
+		return operations, tx.Error
+	}
+
+	return operations, error
+}
+
 func (o OperationRepository) Insert(opt *domain.Operation) error {
 	tx := o.DB.Create(opt)
 	if tx.Error != nil {

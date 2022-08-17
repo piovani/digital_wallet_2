@@ -33,5 +33,6 @@ func NewOperation(name, t, coin string, value float64) (*Operation, error) {
 }
 
 type OperationRepository interface {
+	FindByUserName(username string) ([]Operation, error)
 	Insert(opt *Operation) error
 }

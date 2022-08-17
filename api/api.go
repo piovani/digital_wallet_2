@@ -45,5 +45,6 @@ func (a *Api) getControllers() {
 	a.OperationController = operation.NewOperationController(
 		usecase.NewDeposit(a.Database),
 		usecase.NewWithdraw(a.Database),
+		usecase.NewHistoric(a.Database),
 	)
 }

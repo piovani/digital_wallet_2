@@ -11,12 +11,14 @@ import (
 type OperationController struct {
 	UsecaseDeposit  *usecase.Deposit
 	UsecaseWithdraw *usecase.Withdraw
+	UsecaseHistoric *usecase.Historic
 }
 
-func NewOperationController(d *usecase.Deposit, w *usecase.Withdraw) *OperationController {
+func NewOperationController(d *usecase.Deposit, w *usecase.Withdraw, h *usecase.Historic) *OperationController {
 	return &OperationController{
 		UsecaseDeposit:  d,
 		UsecaseWithdraw: w,
+		UsecaseHistoric: h,
 	}
 }
 
@@ -48,4 +50,15 @@ func (o *OperationController) Withdraw(c echo.Context) error {
 	}
 
 	return c.NoContent(http.StatusCreated)
+}
+
+func (o *OperationController) Historic(c echo.Context) error {
+	username := c.FormValue("user_name")
+
+	operations, err := o.UsecaseHistoric.Execute(username)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, controller.NewResponseError(err))
+	}
+
+	return c.JSON(http.StatusOK, GetOpertationsOutput(operations))
 }
