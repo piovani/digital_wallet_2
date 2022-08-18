@@ -8,6 +8,7 @@
     - <a src="https://hub.docker.com/layers/redis/library/redis/latest/images/sha256-5050c3b85c308ec9e9eafb8ac7b3a8742a61cdb298d79851141a500491d45baf?context=explore">Redis</a>
     - <a src="https://hub.docker.com/layers/golang/library/golang/1.19-alpine3.16/images/sha256-70df3b8f9f099da7f60f0b32480015165e3d0b51bfacf9e255b59f3dd6bd2828?context=explore">Golang</a>
     - <a src="https://hub.docker.com/layers/mysql/library/mysql/5.7/images/sha256-5ecf646122c4fcbda81983c9e93e81a011b0593c9c19fbfc55b48bd1c23bc790?context=explore">Mysql</a>
+- <a src="https://github.com/stretchr/testify">Testify<a>
 
 ## Requirements
 - Docker 20.10.17 or superior
@@ -16,6 +17,11 @@
 ## How Star The Project
 
 ## How to Test
+### Unit testing
+To run unit tests, execute this command:
+```
+make cover
+```
 
 ## Checklist TODO
 - [X] Conexao com banco de dados MySQL
@@ -27,8 +33,7 @@
 - [X] Validação de dados -> Rota de Deposito
 - [X] Validação de dados -> Rota de Saque
 - [X] Rota Historico
-- [ ] Rota Balanço - Apresentar valor em carteira, valor em moeda atual, valor em dolares e valore em euros e a somatoraria dessas duas moedas principais
-- [ ] Colocar worker pool na coleta de cotação
+- [X] Rota Balanço - Apresentar valor em carteira, valor em moeda atual, valor em dolares e valore em euros e a somatoraria dessas duas moedas principais
 - [ ] Testes unitários
 - [ ] Swagger com as rotas mapeadas
 - [ ] Seed com alguns dados iniciais
