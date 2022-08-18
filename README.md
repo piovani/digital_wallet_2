@@ -27,8 +27,12 @@
 - [X] Validação de dados -> Rota de Deposito
 - [X] Validação de dados -> Rota de Saque
 - [X] Rota Historico
-- [] Rota Balanço - Apresentar valor em carteira, valor em moeda atual, valor em dolares e valore em euros e a somatoraria dessas duas moedas principais
-- [] Testes unitários
-- [] Swagger com as rotas mapeadas
-- [] Seed com alguns dados iniciais
-- [] Arrumar os containers para API rodar corretamente
+- [ ] Rota Balanço - Apresentar valor em carteira, valor em moeda atual, valor em dolares e valore em euros e a somatoraria dessas duas moedas principais
+- [ ] Colocar worker pool na coleta de cotação
+- [ ] Testes unitários
+- [ ] Swagger com as rotas mapeadas
+- [ ] Seed com alguns dados iniciais
+- [ ] Centralizar os Log's 
+- [ ] Colocar Prometheus
+- [ ] Colocar Grapfana
+- [ ] Arrumar os containers para API rodar corretamente

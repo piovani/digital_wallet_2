@@ -13,4 +13,5 @@ func (a *Api) getRoutes() {
 	groupOperation.POST("/deposit", a.OperationController.Deposit)
 	groupOperation.POST("/withdraw", a.OperationController.Withdraw)
 	groupOperation.GET("/historic", a.OperationController.Historic)
+	groupOperation.GET("/balance", a.OperationController.Balance)
 }
