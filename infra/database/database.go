@@ -13,12 +13,13 @@ type Database struct {
 	OperationRepository domain.OperationRepository
 }
 
-func NewDatabase(db *gorm.DB) *Database {
+func NewDatabase(db *gorm.DB, wr domain.WalletRepository, or domain.OperationRepository) *Database {
 	database := &Database{
 		Connection: db,
-	}
 
-	database.getRepositores()
+		WalletRepository: wr,
+		OperationRepository: or,
+	}
 
 	return database
 }
