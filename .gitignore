@@ -6,3 +6,5 @@ service
 .env
 .database
 .digital-wallet-2-volume-mysql
+coverage.out
+cover.html
