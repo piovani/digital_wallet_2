@@ -8,7 +8,6 @@ help:
 	@echo "Usege:                                         "
 	@echo "make help     # prints usage info              "
 	@echo "make mock     # generate mocks                 "
-	@echo "make test     # run tests                      "
 	@echo "make cover    # run tests and generate coverage"
 	@echo "make report   # run tests and generate report  "
 	@echo "make migrate  # run migrate generate database  "
@@ -19,9 +18,6 @@ help:
 mock:
 	~/go/bin/mockgen -source=domain/operation.go -destination=infra/mock/operation_repository.go -package=mock
 	~/go/bin/mockgen -source=domain/wallet.go -destination=infra/mock/wallet_repository.go -package=mock
-
-test:
-	CGO_ENABLE=1 go test -short -race $(GOPACKAGES)
 
 cover:
 	go test ./... -coverprofile=coverage.out -covermode=count

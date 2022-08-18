@@ -27,15 +27,18 @@ func (d *Withdraw) Execute(username, coin string, value float64) error {
 		return err
 	}
 
+	opt, err := domain.NewOperation(username, WITHDRAW_TYPE, coin, value)
+	if err != nil {
+		return err
+	}
+
 	if !d.checkThereValueInWallet(wallet, coin, value) {
 		return fmt.Errorf("Insufficient portfolio value")
 	}
 
 	d.subValueInWallet(wallet, coin, value)
 
-	d.Database.WalletRepository.Save(wallet)
-
-	opt, err := domain.NewOperation(username, WITHDRAW_TYPE, coin, value)
+	err = d.Database.WalletRepository.Save(wallet)
 	if err != nil {
 		return err
 	}
