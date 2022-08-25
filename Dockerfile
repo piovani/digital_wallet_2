@@ -6,6 +6,8 @@ ENV PATH="go/bin:${PATH}"
 
 ENV CGO_ENABLED=0
 
+COPY .env-example .env
+
 COPY . .
 
 RUN go mod download

@@ -57,7 +57,7 @@ make api
 - [X] Testes unitários
 - [X] Swagger com as rotas mapeadas
 - [X] Seed com alguns dados iniciais
-- [ ] Centralizar os Log's 
+- [X] Centralizar os Log's 
 - [ ] Colocar Prometheus
 - [ ] Colocar Grapfana
-- [ ] Arrumar os containers para API rodar corretamente
+- [X] Arrumar os containers para API rodar corretamente
