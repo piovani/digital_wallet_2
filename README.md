@@ -24,6 +24,12 @@ To run unit tests, execute this command:
 ```
 make cover
 ```
+### With Swagger
+1. Start API
+```
+make api
+```
+2. Open your Brozer at: http://localhost:8080/swagger/index.html#/coin/get_coin_price
 
 ## Checklist TODO
 - [X] Conexao com banco de dados MySQL
@@ -37,7 +43,7 @@ make cover
 - [X] Rota Historico
 - [X] Rota Balanço - Apresentar valor em carteira, valor em moeda atual, valor em dolares e valore em euros e a somatoraria dessas duas moedas principais
 - [X] Testes unitários
-- [ ] Swagger com as rotas mapeadas
+- [X] Swagger com as rotas mapeadas
 - [ ] Seed com alguns dados iniciais
 - [ ] Centralizar os Log's 
 - [ ] Colocar Prometheus
