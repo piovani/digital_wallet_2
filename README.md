@@ -9,6 +9,8 @@
     - <a src="https://hub.docker.com/layers/golang/library/golang/1.19-alpine3.16/images/sha256-70df3b8f9f099da7f60f0b32480015165e3d0b51bfacf9e255b59f3dd6bd2828?context=explore">Golang</a>
     - <a src="https://hub.docker.com/layers/mysql/library/mysql/5.7/images/sha256-5ecf646122c4fcbda81983c9e93e81a011b0593c9c19fbfc55b48bd1c23bc790?context=explore">Mysql</a>
 - <a src="https://github.com/stretchr/testify">Testify<a>
+- <a src="https://github.com/swaggo/swag#declarative-comments-format">Swag</a>
+- <a src="https://github.com/swaggo/echo-swagger">Echo Swagger</a>
 
 ## Requirements
 - Docker 20.10.17 or superior
@@ -34,7 +36,7 @@ make cover
 - [X] Validação de dados -> Rota de Saque
 - [X] Rota Historico
 - [X] Rota Balanço - Apresentar valor em carteira, valor em moeda atual, valor em dolares e valore em euros e a somatoraria dessas duas moedas principais
-- [ ] Testes unitários
+- [X] Testes unitários
 - [ ] Swagger com as rotas mapeadas
 - [ ] Seed com alguns dados iniciais
 - [ ] Centralizar os Log's 

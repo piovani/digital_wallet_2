@@ -1,0 +1,162 @@
+definitions:
+  coin.Output:
+    properties:
+      ada_eur:
+        type: number
+      ada_uds:
+        type: number
+      btc_eur:
+        type: number
+      btc_uds:
+        type: number
+      doge_eur:
+        type: number
+      doge_uds:
+        type: number
+      eth_eur:
+        type: number
+      eth_uds:
+        type: number
+      xrp_eur:
+        type: number
+      xrp_uds:
+        type: number
+    type: object
+  controller.ResponseError:
+    description: Message error message
+    properties:
+      error_message:
+        type: string
+    type: object
+  operation.Input:
+    properties:
+      coin:
+        example: btc, eth, ada, xrp, doge
+        type: string
+      user_name:
+        example: john
+        type: string
+      value:
+        example: 1.23
+        type: number
+    type: object
+  operation.OperationOutput:
+    properties:
+      coin:
+        description: 'Coin from Operation ex: "btc, eth, ada, xrp, doge"'
+        type: string
+      created_at:
+        description: When operation maked
+        type: string
+      id:
+        description: ID from Operation
+        type: integer
+      type:
+        description: Type from Operation
+        type: string
+      user_name:
+        description: UserName from Operation
+        type: string
+      value:
+        description: Value from Operation
+        type: number
+    type: object
+  operation.OperationsOutput:
+    properties:
+      operations:
+        items:
+          $ref: '#/definitions/operation.OperationOutput'
+        type: array
+    type: object
+info:
+  contact: {}
+paths:
+  /coin/price:
+    get:
+      description: Price show current values from coins
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/coin.Output'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.ResponseError'
+      summary: Price from Coins
+      tags:
+      - coin
+  /operations/deposit:
+    post:
+      consumes:
+      - application/json
+      description: Deposit in at Wallet from user
+      parameters:
+      - description: query params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/operation.Input'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.ResponseError'
+      summary: Operation Deposit
+      tags:
+      - operation
+  /operations/historic:
+    get:
+      description: Historic from operations at Wallet
+      parameters:
+      - description: User name
+        in: query
+        name: user_name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/operation.OperationsOutput'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.ResponseError'
+      summary: Historic from Operations
+      tags:
+      - operation
+  /operations/withdraw:
+    post:
+      consumes:
+      - application/json
+      description: Withdraw in at Wallet from user
+      parameters:
+      - description: query params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/operation.Input'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.ResponseError'
+      summary: Operation Withdraw
+      tags:
+      - operation
+swagger: "2.0"

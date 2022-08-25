@@ -39,6 +39,16 @@ func NewOperationController(
 	}
 }
 
+// Deposit godoc
+// @Summary     Operation Deposit
+// @Description Deposit in at Wallet from user
+// @Tags        operation
+// @Accept       json
+// @Produce      json
+// @Param request body Input true "query params"
+// @Success 201
+// @failure 400 {object} controller.ResponseError
+// @Router /operations/deposit [post]
 func (o *OperationController) Deposit(c echo.Context) error {
 	var input Input
 	c.Bind(&input)
@@ -54,6 +64,16 @@ func (o *OperationController) Deposit(c echo.Context) error {
 	return c.NoContent(http.StatusCreated)
 }
 
+// Withdraw godoc
+// @Summary     Operation Withdraw
+// @Description Withdraw in at Wallet from user
+// @Tags        operation
+// @Accept       json
+// @Produce      json
+// @Param request body Input true "query params"
+// @Success 201
+// @failure 400 {object} controller.ResponseError
+// @Router /operations/withdraw [post]
 func (o *OperationController) Withdraw(c echo.Context) error {
 	var input Input
 	c.Bind(&input)
@@ -69,6 +89,15 @@ func (o *OperationController) Withdraw(c echo.Context) error {
 	return c.NoContent(http.StatusCreated)
 }
 
+// Historic godoc
+// @Summary     Historic from Operations
+// @Description Historic from operations at Wallet
+// @Tags        operation
+// @Produce      json
+// @Param user_name query string true "User name"
+// @Success 200 {object} OperationsOutput
+// @failure 400 {object} controller.ResponseError
+// @Router /operations/historic [get]
 func (o *OperationController) Historic(c echo.Context) error {
 	username := c.FormValue("user_name")
 

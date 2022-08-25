@@ -14,6 +14,7 @@ help:
 	@echo "make collect  # collect price coins            "
 	@echo "make start    # run api project                "
 	@echo "make read     # read values coins in redis     "
+	@echo "make swag     # generagete files swagger        "
 
 mock:
 	~/go/bin/mockgen -source=domain/operation.go -destination=infra/mock/operation_repository.go -package=mock
@@ -40,3 +41,6 @@ start:
 
 read:
 	go run main.go read
+
+swag:
+	~/go/bin/swag i

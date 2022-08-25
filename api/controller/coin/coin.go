@@ -17,6 +17,14 @@ func NewCoinController(usecaseCoinPrice *usecase.CoinPrice) *CoinController {
 	}
 }
 
+// Price godoc
+// @Summary     Price from Coins
+// @Description Price show current values from coins
+// @Tags        coin
+// @Produce     json
+// @Success 200 {object} Output
+// @failure 400 {object} controller.ResponseError
+// @Router /coin/price [get]
 func (c *CoinController) Price(e echo.Context) error {
 	res, err := c.UsecaseCoinPrice.Execute()
 	if err != nil {
