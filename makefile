@@ -15,6 +15,7 @@ help:
 	@echo "make start    # run api project                "
 	@echo "make read     # read values coins in redis     "
 	@echo "make swag     # generagete files swagger        "
+	@echo "make seed     # generagete registers in db     "
 
 mock:
 	~/go/bin/mockgen -source=domain/operation.go -destination=infra/mock/operation_repository.go -package=mock
@@ -44,3 +45,6 @@ read:
 
 swag:
 	~/go/bin/swag i
+
+seed:
+	go run main.go seed

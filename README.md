@@ -17,6 +17,18 @@
 - Docker Compose 1.29.2 or superior
 
 ## How Star The Project
+1. Start containers Docker
+```
+docker-compose up -d
+```
+2. Run migrate
+```
+make migrate
+```
+3. Run seed
+```
+make seed
+```
 
 ## How to Test
 ### Unit testing

@@ -25,6 +25,8 @@ func Execute() {
 		read()
 	case "migrate":
 		migrate()
+	case "seed":
+		seed()
 	default:
 		fmt.Println("NENHUM COMANDO")
 	}
