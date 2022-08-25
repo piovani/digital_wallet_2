@@ -6,10 +6,15 @@ import (
 
 	"github.com/piovani/digital_wallet_2/infra/config"
 	"github.com/piovani/digital_wallet_2/infra/database/mysql"
+	log_infra "github.com/piovani/digital_wallet_2/infra/log"
 	"gorm.io/gorm"
 )
 
+var Log log_infra.Log
+
 func Execute() {
+	Log = *log_infra.NewLog("CMD")
+
 	cmd := ""
 
 	if len(os.Args) > 1 {
@@ -34,7 +39,7 @@ func Execute() {
 
 func CheckFatal(err error) {
 	if err != nil {
-		fmt.Errorf(err.Error())
+		Log.Fatal(err.Error())
 	}
 }
 

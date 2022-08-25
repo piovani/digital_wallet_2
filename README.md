@@ -56,7 +56,7 @@ make api
 - [X] Rota Balanço - Apresentar valor em carteira, valor em moeda atual, valor em dolares e valore em euros e a somatoraria dessas duas moedas principais
 - [X] Testes unitários
 - [X] Swagger com as rotas mapeadas
-- [ ] Seed com alguns dados iniciais
+- [X] Seed com alguns dados iniciais
 - [ ] Centralizar os Log's 
 - [ ] Colocar Prometheus
 - [ ] Colocar Grapfana
