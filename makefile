@@ -47,4 +47,4 @@ swag:
 	~/go/bin/swag i
 
 seed:
-	go run main.go seed
+	docker exec -it digital-wallet-2-api go run main.go seed
