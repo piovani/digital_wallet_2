@@ -43,6 +43,15 @@ make api
 ```
 2. Open your Brozer at: http://localhost:8080/swagger/index.html#/coin/get_coin_price
 
+### With <a src="https://www.postman.com/downloads/?utm_source=postman-home">Postman</a> or <a src="https://insomnia.rest/download">Insomnia</a>
+1. Install Postman or Insomnia
+
+2. import File Collections
+```
+./docs/Digital Wallet 2.postman_collection.jsondocs/Digital Wallet 2.postman_collection.json
+```
+3. Use the endpoints
+
 ## Checklist TODO
 - [X] Conexao com banco de dados MySQL
 - [X] Rota de Valores de moedas atual
