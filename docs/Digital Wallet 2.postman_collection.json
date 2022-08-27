@@ -81,6 +81,54 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Hsistoric",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/operations/historic?user_name=Joao",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"operations",
+								"historic"
+							],
+							"query": [
+								{
+									"key": "user_name",
+									"value": "Joao"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/operations/balance?user_name=Joao",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"operations",
+								"balance"
+							],
+							"query": [
+								{
+									"key": "user_name",
+									"value": "Joao"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
