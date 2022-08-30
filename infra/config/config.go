@@ -17,6 +17,8 @@ type Config struct {
 	MysqlHost     string `envconfig:"MYSQL_HOST"`
 	MysqlPort     int    `envconfig:"MYSQL_PORT"`
 	MysqlDatabase string `envconfig:"MYSQL_DATABASE"`
+
+	Prometheuspushgateway string `envconfig:"PROMETHEUS_PUSHGATEWAY"`
 }
 
 var Env Config

@@ -5,8 +5,11 @@ import (
 	"fmt"
 
 	"github.com/labstack/echo/v4"
+	echo_middleware "github.com/labstack/echo/v4/middleware"
+
 	"github.com/piovani/digital_wallet_2/api/controller/coin"
 	"github.com/piovani/digital_wallet_2/api/controller/operation"
+	"github.com/piovani/digital_wallet_2/api/middleware"
 	"github.com/piovani/digital_wallet_2/infra/config"
 	"github.com/piovani/digital_wallet_2/infra/database"
 	"github.com/piovani/digital_wallet_2/infra/redis"
@@ -32,10 +35,15 @@ func NewApi(redis *redis.Redis, database *database.Database) *Api {
 }
 
 func (a *Api) Start() error {
+	a.useMiddleware()
 	a.getControllers()
 	a.getRoutes()
 
 	return a.Service.Start(fmt.Sprintf(":%d", config.Env.ApiPort))
+}
+
+func (a *Api) useMiddleware() {
+	a.Service.Use(echo_middleware.BodyDumpHandler(middleware.Metric))
 }
 
 func (a *Api) getControllers() {
