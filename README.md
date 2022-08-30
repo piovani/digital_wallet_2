@@ -70,3 +70,5 @@ make api
 - [ ] Colocar Prometheus
 - [ ] Colocar Grapfana
 - [X] Arrumar os containers para API rodar corretamente
+- [ ] CI/CD com job para SonarCloud
+- [ ] Criar Server gRPC
