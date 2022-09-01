@@ -1,55 +1,62 @@
 package metric
 
-import "time"
+import (
+	"github.com/piovani/digital_wallet_2/infra/config"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/push"
+)
 
-type CLI struct {
-	Name       string
-	StartedAt  time.Time
-	FinishedAt time.Time
-	Duration   float64
+type Metric struct {
+	pHistogram           *prometheus.HistogramVec
+	httpRequestHistogram *prometheus.HistogramVec
 }
 
-func NewCLI(name string) *CLI {
-	return &CLI{
-		Name: name,
+func NewMetric() (*Metric, error) {
+	cli := prometheus.NewHistogramVec(prometheus.HistogramOpts{
+		Namespace: "pushgateway",
+		Name:      "cmd_duration_seconds",
+		Help:      "CLI application execution in seconds",
+		Buckets:   prometheus.DefBuckets,
+	}, []string{"name"})
+
+	http := prometheus.NewHistogramVec(prometheus.HistogramOpts{
+		Namespace: "http",
+		Name:      "request_duration_seconds",
+		Help:      "The latency of the HTTP requests.",
+		Buckets:   prometheus.DefBuckets,
+	}, []string{"handler", "method", "code"})
+
+	m := &Metric{
+		pHistogram:           cli,
+		httpRequestHistogram: http,
 	}
-}
 
-func (c *CLI) Started() {
-	c.StartedAt = time.Now()
-}
-
-func (c *CLI) Finished() {
-	c.FinishedAt = time.Now()
-	c.Duration = time.Since(c.StartedAt).Seconds()
-}
-
-type HTTP struct {
-	Handler    string
-	Method     string
-	StatusCode string
-	StartedAt  time.Time
-	FinishedAt time.Time
-	Duration   float64
-}
-
-func NewHTTP(handler, method string) *HTTP {
-	return &HTTP{
-		Handler: handler,
-		Method:  method,
+	err := prometheus.Register(m.pHistogram)
+	if err != nil && err.Error() != "duplicate metrics collector registration attempted" {
+		return nil, err
 	}
+
+	err = prometheus.Register(m.httpRequestHistogram)
+	if err != nil && err.Error() != "duplicate metrics collector registration attempted" {
+		return nil, err
+	}
+
+	return m, nil
 }
 
-func (h *HTTP) Started() {
-	h.StartedAt = time.Now()
+func (m *Metric) SaveCMD(c *CMD) error {
+	gatewayURL := config.Env.Prometheuspushgateway
+
+	m.pHistogram.WithLabelValues(c.Name).Observe(c.Duration)
+
+	return push.New(gatewayURL, "cmd_job").Collector(m.pHistogram).Push()
 }
 
-func (h *HTTP) Finished() {
-	h.FinishedAt = time.Now()
-	h.Duration = time.Since(h.StartedAt).Seconds()
+func (m *Metric) SaveHTTP(h *HTTP) {
+	m.httpRequestHistogram.WithLabelValues(h.Handler, h.Method, h.StatusCode).Observe(h.Duration)
 }
 
 type UseCase interface {
-	SaveCli(c *CLI) error
+	SaveCli(c *CMD) error
 	SaveService(h *HTTP)
 }

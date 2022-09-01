@@ -7,6 +7,7 @@ import (
 	"github.com/piovani/digital_wallet_2/infra/config"
 	"github.com/piovani/digital_wallet_2/infra/database/mysql"
 	log_infra "github.com/piovani/digital_wallet_2/infra/log"
+	"github.com/piovani/digital_wallet_2/infra/metric"
 	"gorm.io/gorm"
 )
 
@@ -52,4 +53,11 @@ func GetConnectionDB() *gorm.DB {
 	CheckFatal(err)
 
 	return db
+}
+
+func GetMetric() *metric.Metric {
+	metric, err := metric.NewMetric()
+	CheckFatal(err)
+
+	return metric
 }

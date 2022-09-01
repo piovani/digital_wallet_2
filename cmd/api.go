@@ -10,15 +10,16 @@ import (
 func startApi() {
 	InitConfig()
 
-	err := api.NewApi(redis.NewRedis(), getDatabase()).Start()
+	err := api.NewApi(redis.NewRedis(), getDatabase(), GetMetric()).Start()
 	CheckFatal(err)
 }
 
 func getDatabase() *database.Database {
 	conn := GetConnectionDB()
 
-	or := repositories.NewOperationRepository(conn)
-	wr := repositories.NewWalletRepository(conn)
-
-	return database.NewDatabase(conn, wr, or)
+	return database.NewDatabase(
+		conn,
+		repositories.NewWalletRepository(conn),
+		repositories.NewOperationRepository(conn),
+	)
 }
