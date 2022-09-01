@@ -1,5 +1,9 @@
-name: ci-golang-digital-wallet-2
-on: [push]
+name: 'Digital Wallet 2'
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - ci
 jobs:
   check-application:
     runs-on: ubuntu-latest
