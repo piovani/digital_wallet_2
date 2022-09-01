@@ -67,8 +67,8 @@ make api
 - [X] Swagger com as rotas mapeadas
 - [X] Seed com alguns dados iniciais
 - [X] Centralizar os Log's 
-- [ ] Colocar Prometheus
-- [ ] Colocar Grapfana
+- [X] Colocar Prometheus
+- [X] Colocar Grapfana
 - [X] Arrumar os containers para API rodar corretamente
 - [ ] CI/CD com job para SonarCloud
 - [ ] Criar Server gRPC
