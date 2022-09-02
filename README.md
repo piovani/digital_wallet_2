@@ -70,5 +70,6 @@ make api
 - [X] Colocar Prometheus
 - [X] Colocar Grapfana
 - [X] Arrumar os containers para API rodar corretamente
-- [ ] CI/CD com job para SonarCloud
+- [X] CI com job para SonarCloud
 - [ ] Criar Server gRPC
+- [ ] Usar HTML 2 nas rotas de REST
