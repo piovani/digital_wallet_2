@@ -67,8 +67,23 @@ make api
 - [X] Swagger com as rotas mapeadas
 - [X] Seed com alguns dados iniciais
 - [X] Centralizar os Log's 
-- [ ] Colocar Prometheus
-- [ ] Colocar Grapfana
+- [X] Colocar Prometheus
+- [X] Colocar Grapfana
 - [X] Arrumar os containers para API rodar corretamente
-- [ ] CI/CD com job para SonarCloud
+- [X] Colocar Cobra para gerenciar o CMD
+- [ ] Melhorar o Migrate
+- [ ] Melhorar o Seed
+- [ ] Melhorar a Coleta de values dos coins
+- [ ] Melhorar a leitura dos values dos coins
+- [ ] Colocar o Sleep de Collect como variavel de Ambiente
+- [ ] CI com job para SonarCloud
+- [ ] Teste de Integração
+- [ ] Testes no Domain
+- [ ] Colocar o Valor na Wallet em Dolares e Euros na hora do Balanço
+- [ ] Teste de Integração
+- [ ] Teste encima do Domain, já que existe regra
 - [ ] Criar Server gRPC
+- [ ] Add Kafka
+    - [ ] Na operação de Deposit, publicar uma mensagem no topic do kafka
+    - [ ] Na operação de Withdraw, publicar uma mensagem no topic do kafka
+    - [ ] Novo container para receber e printar as mensagens recebidas pelo kafka
