@@ -7,12 +7,12 @@ import (
 	"github.com/labstack/echo/v4"
 	echo_middleware "github.com/labstack/echo/v4/middleware"
 
-	"github.com/piovani/digital_wallet_2/api/controller/coin"
-	"github.com/piovani/digital_wallet_2/api/controller/operation"
 	"github.com/piovani/digital_wallet_2/infra/config"
 	"github.com/piovani/digital_wallet_2/infra/database"
 	"github.com/piovani/digital_wallet_2/infra/metric"
 	"github.com/piovani/digital_wallet_2/infra/redis"
+	"github.com/piovani/digital_wallet_2/ui/api/controller/coin"
+	"github.com/piovani/digital_wallet_2/ui/api/controller/operation"
 	"github.com/piovani/digital_wallet_2/usecase"
 )
 

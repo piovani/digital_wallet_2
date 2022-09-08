@@ -48,25 +48,8 @@ func NewPrice(ctx context.Context) *Price {
 	}
 }
 
-func (p Price) Collect() {
-	for {
-		go p.collectBtcUsd()
-		go p.collectBtcEur()
-		go p.collectEthUsd()
-		go p.collecEtcEur()
-		go p.collectAdaUsd()
-		go p.collectAdaEur()
-		go p.collectXrpUsd()
-		go p.collectXrpEur()
-		go p.collectDogeUsd()
-		go p.collectDogeEur()
-
-		time.Sleep(time.Second * 50)
-	}
-}
-
 // BTC
-func (p Price) collectBtcUsd() {
+func (p Price) CollectBtcUsd() {
 	value := p.Cex.getValue("BTC", "USD")
 	p.Redis.Set(p.Ctx, KEY_BTC_USD, value, DURATION)
 }
@@ -80,7 +63,7 @@ func (p Price) GetBtcUsd() float64 {
 	return p.stringToFloat(valueString)
 }
 
-func (p Price) collectBtcEur() {
+func (p Price) CollectBtcEur() {
 	value := p.Cex.getValue("BTC", "EUR")
 	p.Redis.Set(p.Ctx, KEY_BTC_EUR, value, DURATION)
 }
@@ -95,7 +78,7 @@ func (p Price) GetBtcEur() float64 {
 }
 
 // ETH
-func (p Price) collectEthUsd() {
+func (p Price) CollectEthUsd() {
 	value := p.Cex.getValue("ETH", "USD")
 	p.Redis.Set(p.Ctx, KEY_ETH_USD, value, DURATION)
 }
@@ -109,7 +92,7 @@ func (p Price) GetEthUsd() float64 {
 	return p.stringToFloat(valueString)
 }
 
-func (p Price) collecEtcEur() {
+func (p Price) CollecEtcEur() {
 	value := p.Cex.getValue("ETH", "EUR")
 	p.Redis.Set(p.Ctx, KEY_ETH_EUR, value, DURATION)
 }
@@ -124,7 +107,7 @@ func (p Price) GetEthEur() float64 {
 }
 
 // ADA
-func (p Price) collectAdaUsd() {
+func (p Price) CollectAdaUsd() {
 	value := p.Cex.getValue("ADA", "USD")
 	p.Redis.Set(p.Ctx, KEY_ADA_USD, value, DURATION)
 }
@@ -138,7 +121,7 @@ func (p Price) GetAdaUsd() float64 {
 	return p.stringToFloat(valueString)
 }
 
-func (p Price) collectAdaEur() {
+func (p Price) CollectAdaEur() {
 	value := p.Cex.getValue("ADA", "EUR")
 	p.Redis.Set(p.Ctx, KEY_ADA_EUR, value, DURATION)
 }
@@ -153,7 +136,7 @@ func (p Price) GetAdaEur() float64 {
 }
 
 //XRP
-func (p Price) collectXrpUsd() {
+func (p Price) CollectXrpUsd() {
 	value := p.Cex.getValue("XRP", "USD")
 	p.Redis.Set(p.Ctx, KEY_XRP_USD, value, DURATION)
 }
@@ -167,7 +150,7 @@ func (p Price) GetXrpUsd() float64 {
 	return p.stringToFloat(valueString)
 }
 
-func (p Price) collectXrpEur() {
+func (p Price) CollectXrpEur() {
 	value := p.Cex.getValue("XRP", "EUR")
 	p.Redis.Set(p.Ctx, KEY_XRP_EUR, value, DURATION)
 }
@@ -182,7 +165,7 @@ func (p Price) GetXrpEur() float64 {
 }
 
 // DOGE
-func (p Price) collectDogeUsd() {
+func (p Price) CollectDogeUsd() {
 	value := p.Cex.getValue("DOGE", "USD")
 	p.Redis.Set(p.Ctx, KEY_DOGE_USD, value, DURATION)
 }
@@ -196,7 +179,7 @@ func (p Price) GetDogeUsd() float64 {
 	return p.stringToFloat(valueString)
 }
 
-func (p Price) collectDogeEur() {
+func (p Price) CollectDogeEur() {
 	value := p.Coinbase.GetDogeEur()
 	p.Redis.Set(p.Ctx, KEY_DOGE_EUR, value, DURATION)
 }

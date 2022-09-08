@@ -1,15 +1,13 @@
 package cmd
 
 import (
-	"fmt"
-	"os"
-
 	"github.com/piovani/digital_wallet_2/infra/config"
 	"github.com/piovani/digital_wallet_2/infra/database"
 	"github.com/piovani/digital_wallet_2/infra/database/mysql"
 	"github.com/piovani/digital_wallet_2/infra/database/mysql/repositories"
 	log_infra "github.com/piovani/digital_wallet_2/infra/log"
 	"github.com/piovani/digital_wallet_2/infra/metric"
+	"github.com/spf13/cobra"
 	"gorm.io/gorm"
 )
 
@@ -18,26 +16,22 @@ var Log log_infra.Log
 func Execute() {
 	Log = *log_infra.NewLog("CMD")
 
-	cmd := ""
-
-	if len(os.Args) > 1 {
-		cmd = os.Args[1]
+	cmd := &cobra.Command{
+		Use:                   "digital-wallet-2",
+		Short:                 "digital-wallet-2",
+		Version:               "1.0.0",
+		DisableFlagsInUseLine: true,
 	}
 
-	switch cmd {
-	case "api":
-		startApi()
-	case "collect":
-		collect()
-	case "read":
-		read()
-	case "migrate":
-		migrate()
-	case "seed":
-		seed()
-	default:
-		fmt.Println("NENHUM COMANDO")
-	}
+	cmd.AddCommand(
+		Api,
+		CollectCoinsPrices,
+		Migrate,
+		ReadCoinsPrices,
+		Seed,
+	)
+
+	CheckFatal(cmd.Execute())
 }
 
 func CheckFatal(err error) {

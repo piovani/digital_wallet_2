@@ -4,24 +4,24 @@ import (
 	"math/rand"
 
 	"github.com/piovani/digital_wallet_2/domain"
-	"github.com/piovani/digital_wallet_2/infra/database"
-	"github.com/piovani/digital_wallet_2/infra/database/mysql"
-	"github.com/piovani/digital_wallet_2/infra/database/mysql/repositories"
 	"github.com/piovani/digital_wallet_2/usecase"
+	"github.com/spf13/cobra"
 )
 
-func seed() {
-	InitConfig()
-	db, err := mysql.GetClient()
-	CheckFatal(err)
+var Seed = &cobra.Command{
+	Use:                "seed",
+	Short:              "Charge inital from database",
+	Version:            "1.0.0",
+	DisableFlagParsing: true,
+	Run: func(cmd *cobra.Command, args []string) {
+		InitConfig()
 
-	database := database.NewDatabase(db, repositories.NewWalletRepository(db), repositories.NewOperationRepository(db))
+		depositCase := usecase.NewDeposit(GetDatabase())
+		userName := "john"
 
-	depositCase := usecase.NewDeposit(database)
-	userName := "john"
-
-	for i := 0; i < 5; i++ {
-		err := depositCase.Execute(userName, domain.COINS[rand.Intn(len(domain.COINS))], rand.Float64())
-		CheckFatal(err)
-	}
+		for i := 0; i < 5; i++ {
+			err := depositCase.Execute(userName, domain.COINS[rand.Intn(len(domain.COINS))], rand.Float64())
+			CheckFatal(err)
+		}
+	},
 }

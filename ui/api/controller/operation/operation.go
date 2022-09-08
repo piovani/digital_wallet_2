@@ -6,7 +6,7 @@ import (
 	"text/template"
 
 	"github.com/labstack/echo/v4"
-	"github.com/piovani/digital_wallet_2/api/controller"
+	"github.com/piovani/digital_wallet_2/ui/api/controller"
 	"github.com/piovani/digital_wallet_2/usecase"
 )
 

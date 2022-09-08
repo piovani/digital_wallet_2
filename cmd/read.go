@@ -1,33 +1,17 @@
 package cmd
 
 import (
-	"context"
-	"fmt"
-	"time"
-
-	"github.com/piovani/digital_wallet_2/infra/price"
+	"github.com/piovani/digital_wallet_2/ui/worker"
+	"github.com/spf13/cobra"
 )
 
-func read() {
-	InitConfig()
-
-	ctx := context.TODO()
-	p := price.NewPrice(ctx)
-
-	for {
-		fmt.Println(p.GetBtcUsd())
-		fmt.Println(p.GetBtcEur())
-		fmt.Println(p.GetEthUsd())
-		fmt.Println(p.GetEthEur())
-		fmt.Println(p.GetAdaUsd())
-		fmt.Println(p.GetAdaEur())
-		fmt.Println(p.GetXrpUsd())
-		fmt.Println(p.GetXrpEur())
-		fmt.Println(p.GetDogeUsd())
-		fmt.Println(p.GetDogeEur())
-
-		fmt.Println("=========================")
-
-		time.Sleep(time.Second * 10)
-	}
+var ReadCoinsPrices = &cobra.Command{
+	Use:                "read",
+	Short:              "Read all values conins collected and print",
+	Version:            "1.0.0",
+	DisableFlagParsing: true,
+	Run: func(cmd *cobra.Command, args []string) {
+		InitConfig()
+		worker.NewReadCoinsPrices().Execute()
+	},
 }

@@ -3,8 +3,8 @@ package api
 import (
 	echoSwagger "github.com/swaggo/echo-swagger"
 
-	"github.com/piovani/digital_wallet_2/api/controller/infra"
 	"github.com/piovani/digital_wallet_2/docs"
+	"github.com/piovani/digital_wallet_2/ui/api/controller/infra"
 )
 
 func (a *Api) getRoutes() {
