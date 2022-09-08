@@ -5,7 +5,9 @@ import (
 	"os"
 
 	"github.com/piovani/digital_wallet_2/infra/config"
+	"github.com/piovani/digital_wallet_2/infra/database"
 	"github.com/piovani/digital_wallet_2/infra/database/mysql"
+	"github.com/piovani/digital_wallet_2/infra/database/mysql/repositories"
 	log_infra "github.com/piovani/digital_wallet_2/infra/log"
 	"github.com/piovani/digital_wallet_2/infra/metric"
 	"gorm.io/gorm"
@@ -53,6 +55,16 @@ func GetConnectionDB() *gorm.DB {
 	CheckFatal(err)
 
 	return db
+}
+
+func GetDatabase() *database.Database {
+	conn := GetConnectionDB()
+
+	return database.NewDatabase(
+		conn,
+		repositories.NewWalletRepository(conn),
+		repositories.NewOperationRepository(conn),
+	)
 }
 
 func GetMetric() *metric.Metric {
