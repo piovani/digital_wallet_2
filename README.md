@@ -87,3 +87,4 @@ make api
     - [ ] Na operação de Deposit, publicar uma mensagem no topic do kafka
     - [ ] Na operação de Withdraw, publicar uma mensagem no topic do kafka
     - [ ] Novo container para receber e printar as mensagens recebidas pelo kafka
+- No Database criar: Transaction, Commit e Rollback
