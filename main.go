@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/piovani/digital_wallet_2/cmd"
+	"github.com/piovani/digital_wallet_2/ui/cmd"
 )
 
 func main() {
