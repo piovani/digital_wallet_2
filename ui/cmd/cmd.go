@@ -26,6 +26,7 @@ func Execute() {
 	cmd.AddCommand(
 		Api,
 		CollectCoinsPrices,
+		Grpc,
 		Migrate,
 		ReadCoinsPrices,
 		Seed,
